@@ -1,10 +1,5 @@
 #!/usr/bin/bash
 
-adduser paul
-usermod -aG sudo paul
-
-su - paul
-
 sudo apt update && sudo apt upgrade -y
 
 sudo apt install xorg openbox xauth xterm  -y
