@@ -22,3 +22,6 @@ sudo service vncserver@1 start
 
 sudo systemctl enable vncserver@1
 
+sudo apt install firefox -y
+
+
