@@ -10,7 +10,7 @@ vncpasswd
 
 sudo cp xstartup ~/.vnc/xstartup
 
-chmod +x ~/.vnc/xstartup
+sudo chmod +x ~/.vnc/xstartup
 
 sudo ufw allow from any to any port 5901 proto tcp
 
