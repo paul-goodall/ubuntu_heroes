@@ -1,25 +1,29 @@
-
-
-sudo apt update && sudo apt upgrade -y
+#!/usr/bin/bash
 
 adduser paul
 usermod -aG sudo paul
 
-sudo apt install ubuntu-gnome-desktop
+su - paul
 
-sudo apt install tigervnc-standalone-server tigervnc-common tigervnc-xorg-extension tigervnc-viewer -y
+sudo apt update && sudo apt upgrade -y
 
-vncserver
+sudo apt install xorg openbox xauth xterm  -y
 
-vncserver -kill :1
+sudo apt install tightvncserver xfce4 xfce4-goodies -y
 
-nano ~/.vnc/xstartup
+vncpasswd
 
-#!/bin/sh
-exec /etc/vnc/xstartup
-xrdb $HOME/.Xresources
-vncconfig -iconic &
-dbus-launch --exit-with-session gnome-session &
+sudo cp xstartup ~/.vnc/xstartup
 
+chmod +x ~/.vnc/xstartup
 
-sudo apt-get install xorg openbox xauth xterm -y
+sudo ufw allow from any to any port 5901 proto tcp
+
+sudo cp vncserver@.service /etc/systemd/system/vncserver@.service
+
+sudo systemctl daemon-reload
+
+sudo service vncserver@1 start
+
+sudo systemctl enable vncserver@1
+
